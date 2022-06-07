@@ -13,6 +13,7 @@ export const Container = styled.button`
   }
 
   svg {
+    color: ${({ theme }) => theme.colors.accent};
     align-self: center;
   }
 `;

@@ -1,11 +1,11 @@
 import { Container } from './styled';
 import { FiArrowLeft } from 'react-icons/fi';
 
-export function ButtonText({ title, ...rest }) {
+export function ButtonText({ title, noIcon, ...rest }) {
   return (
     <Container type="button" {...rest}>
       <a href="/">
-        <FiArrowLeft />
+        {noIcon ? '' : <FiArrowLeft />}
         {title}
       </a>
     </Container>

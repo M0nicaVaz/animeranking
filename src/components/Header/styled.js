@@ -17,7 +17,7 @@ export const Container = styled.header`
 
   > h2 {
     color: ${({ theme }) => theme.colors.accent};
-    font-size: clamp(1.6rem, 1.6rem + 0.5vw, 2.4rem);
+    font-size: clamp(1.6rem, 1.6rem + 0.8vw, 2.4rem);
 
     font-weight: 700;
   }
@@ -35,14 +35,15 @@ export const Profile = styled.div`
 
     span {
       align-self: flex-end;
+      font-size: clamp(1.2rem, 1.2rem + 0.2vw, 1.4rem);
     }
 
     strong {
-      font-size: clamp(1.2rem, 1.4 + 0.5vw, 1.8rem);
+      font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
     }
   }
 
-  > img {
+  img {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;

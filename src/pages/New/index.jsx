@@ -2,11 +2,11 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { Textarea } from '../../components/Textarea';
 import { NewTag } from '../../components/NewTag';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import { Button } from '../../components/Button';
 
-import { Container, Form } from './styled';
-import { ButtonText } from '../../components/ButtonText';
+import { Container, Form, ButtonText } from './styled';
 
 export function New() {
   return (
@@ -16,7 +16,11 @@ export function New() {
       <main>
         <Form>
           <header>
-            <ButtonText title="Voltar" />
+            <ButtonText to="/">
+              <FiArrowLeft />
+              Voltar
+            </ButtonText>
+
             <h1>Novo Filme</h1>
           </header>
 

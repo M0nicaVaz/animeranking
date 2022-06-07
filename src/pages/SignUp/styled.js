@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import backgroundImg from '../../assets/homebg.jpg';
 
+import { Link } from 'react-router-dom';
+
 export const Container = styled.div`
   height: 100vh;
 
@@ -46,4 +48,20 @@ export const Background = styled.div`
   background-size: cover;
 
   opacity: 0.4;
+`;
+
+export const ButtonText = styled(Link)`
+  background: none;
+  border: none;
+
+  display: flex;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.accent};
+
+  font-size: clamp(1.4rem, 1.4rem + 0.2vw, 1.6rem);
+
+  svg {
+    color: ${({ theme }) => theme.colors.accent};
+    align-self: center;
+  }
 `;

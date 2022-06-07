@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -24,4 +25,26 @@ export const Container = styled.div`
     overflow-y: auto;
     padding: 0 1.5rem;
   }
+`;
+
+export const LinkButton = styled(Link)`
+  background-color: ${({ theme }) => theme.colors.accent};
+
+  color: ${({ theme }) => theme.colors.bg_dark};
+
+  font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
+  height: 5.6rem;
+  border-radius: 1rem;
+
+  width: 180px;
+  margin-top: 1.6rem;
+
+  border: none;
+  padding: 0 1.6rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 `;

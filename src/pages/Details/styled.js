@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -35,8 +36,10 @@ export const Container = styled.div`
     }
 
     p {
-      margin-top: 4rem;
+      margin-top: 2.5rem;
       font-size: clamp(1.2rem, 1.2rem + 1vw, 1.6rem);
+      color: ${({ theme }) => theme.colors.text_light};
+
       line-height: 2.4rem;
 
       text-align: justify;
@@ -57,7 +60,7 @@ export const MovieInfo = styled.div`
 `;
 
 export const AuthorInfo = styled.div`
-  color: ${({ theme }) => theme.colors.text_light};
+  color: ${({ theme }) => theme.colors.text_ultralight};
   display: flex;
 
   flex-wrap: wrap;
@@ -77,5 +80,22 @@ export const AuthorInfo = styled.div`
   img {
     width: 30px;
     border-radius: 50%;
+  }
+`;
+
+export const ButtonText = styled(Link)`
+  margin-top: 2rem;
+  background: none;
+  border: none;
+
+  display: flex;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.accent};
+
+  font-size: clamp(1.4rem, 1.4rem + 0.2vw, 1.6rem);
+
+  svg {
+    color: ${({ theme }) => theme.colors.accent};
+    align-self: center;
   }
 `;

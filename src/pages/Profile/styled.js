@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -70,5 +71,21 @@ export const Avatar = styled.div`
       height: 2rem;
       color: ${({ theme }) => theme.colors.bg_dark};
     }
+  }
+`;
+
+export const ButtonText = styled(Link)`
+  background: none;
+  border: none;
+
+  display: flex;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.accent};
+
+  font-size: clamp(1.4rem, 1.4rem + 0.2vw, 1.6rem);
+
+  svg {
+    color: ${({ theme }) => theme.colors.accent};
+    align-self: center;
   }
 `;

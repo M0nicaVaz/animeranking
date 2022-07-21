@@ -20,12 +20,33 @@ export const Container = styled.div`
     padding: 0 1.5rem;
   }
 
+  input {
+    width: 100%;
+    margin-bottom: 2.4rem;
+    border-radius: 10px;
+    padding: 1.9rem 2.4rem;
+    background-color: ${({ theme }) => theme.colors.bg_light};
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 1.6rem;
+    border: none;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.text_ultralight};
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
   main {
     grid-area: content;
     height: 60vh;
     margin: 2rem auto 0;
     overflow-y: auto;
-    padding: 0 1.5rem 2rem;
+    padding: 0 1.5rem 4rem;
   }
 `;
 

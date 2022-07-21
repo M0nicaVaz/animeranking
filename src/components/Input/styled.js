@@ -3,16 +3,18 @@ import styled from 'styled-components';
 export const Container = styled.div`
   grid-area: search;
 
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.bg_light};
   display: flex;
   align-items: center;
-  width: min(90%, 130rem);
+  width: 100%;
   margin: 0 auto;
-  padding: 4rem 1.5rem 0;
+  padding: 0 1.5rem;
 
   > input {
-    flex: 1;
-    padding: 1.9rem 2.4rem;
+    width: 100%;
     border-radius: 10px;
+    padding: 1.9rem 2.4rem;
     background-color: ${({ theme }) => theme.colors.bg_light};
     color: ${({ theme }) => theme.colors.primary};
     font-size: 1.6rem;
@@ -27,5 +29,9 @@ export const Container = styled.div`
       -webkit-appearance: none;
       margin: 0;
     }
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
   }
 `;

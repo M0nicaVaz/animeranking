@@ -2,20 +2,24 @@ import { Stars } from '../../components/Stars';
 import { Tag } from '../../components/Tag';
 import { Header } from '../../components/Header';
 import { Modal } from '../../components/Modal';
-import { Container, AuthorInfo, MovieInfo, ButtonText } from './styled';
+import { Container, AuthorInfo, MovieInfo } from './styled';
+
+import { ButtonText } from '../../components/ButtonText';
 
 import { FiClock, FiArrowLeft } from 'react-icons/fi';
 
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export function Details(data) {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   function handleModal() {
     setIsOpen(!isOpen);
   }
 
-  function handleRemove() {
+  function handleGoBack() {
     navigate(-1);
   }
 
@@ -26,11 +30,9 @@ export function Details(data) {
       <main>
         <header>
           <div className="action-btn">
-            <ButtonText to="/">
-              <FiArrowLeft />
-              Voltar
-            </ButtonText>
-            <ButtonText onClick={handleModal}>Excluir Filme</ButtonText>
+            <ButtonText title="Voltar" onClick={handleGoBack} />
+
+            <ButtonText title="Excluir Filme" onClick={handleModal} noIcon />
           </div>
 
           <MovieInfo>
@@ -70,7 +72,7 @@ export function Details(data) {
 
       <Modal isOpen={isOpen}>
         <button onClick={handleModal}>Cancelar</button>
-        <button onClick={handleRemove}>Excluir</button>
+        <button onClick={handleGoBack}>Excluir</button>
       </Modal>
     </Container>
   );

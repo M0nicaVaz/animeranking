@@ -18,7 +18,7 @@ export const Container = styled.div`
 
   button {
     margin: 0;
-    width: 1.2rem;
+    width: 1rem;
     border: none;
     background: none;
   }

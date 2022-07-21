@@ -13,7 +13,9 @@ export const Container = styled.div`
 
   > div {
     color: ${({ theme }) => theme.colors.accent};
-    background-color: ${({ theme }) => theme.colors.bg_dark};
+    background-color: ${({ theme }) => theme.colors.bg_light};
+
+    border: 1px solid ${({ theme }) => theme.colors.accent};
 
     align-self: center;
     justify-self: center;
@@ -51,12 +53,9 @@ export const Container = styled.div`
 
     &:nth-child(2) {
       border: 1px solid ${({ theme }) => theme.colors.red};
+      color: ${({ theme }) => theme.colors.bg_light};
+      background-color: ${({ theme }) => theme.colors.accent};
       margin-left: 1.6rem;
-
-      &:hover {
-        color: ${({ theme }) => theme.colors.red};
-        transition: color 250ms;
-      }
     }
   }
 `;

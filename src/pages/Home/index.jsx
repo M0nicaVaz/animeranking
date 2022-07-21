@@ -12,8 +12,9 @@ export function Home() {
     <Container>
       <Header />
 
-      <Input placeholder="Pesquisar pelo título" />
       <Section>
+        <input type="text" placeholder="Pesquisar pelo título" />
+
         <div className="add-movie">
           <h2>Meus Filmes</h2>
           <LinkButton to="/new">

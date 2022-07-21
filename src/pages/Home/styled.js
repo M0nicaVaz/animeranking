@@ -6,13 +6,15 @@ export const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 10.5rem auto;
+  grid-template-rows: 10.5rem 6.4rem auto;
   grid-template-areas:
     'header'
+    'search'
     'content';
 
   .add-movie {
     display: flex;
+    gap: 2rem;
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5rem;
@@ -23,7 +25,7 @@ export const Container = styled.div`
     height: 60vh;
     margin: 2rem auto 0;
     overflow-y: auto;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 2rem;
   }
 `;
 
@@ -36,7 +38,7 @@ export const LinkButton = styled(Link)`
   height: 5.6rem;
   border-radius: 1rem;
 
-  width: 180px;
+  width: 16.5rem;
   margin-top: 1.6rem;
 
   border: none;
@@ -47,4 +49,9 @@ export const LinkButton = styled(Link)`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+
+  @media (max-width: 480px) {
+    width: 12rem;
+    padding: 0 1rem;
+  }
 `;

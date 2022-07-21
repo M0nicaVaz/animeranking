@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  grid-area: search;
+
   display: flex;
   align-items: center;
-  width: min(62rem, 100%);
+  width: min(90%, 130rem);
+  margin: 0 auto;
+  padding: 4rem 1.5rem 0;
 
   > input {
-    width: min(100%, 63rem);
-    margin: 0 auto;
+    flex: 1;
     padding: 1.9rem 2.4rem;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.colors.bg_light};
@@ -24,9 +27,5 @@ export const Container = styled.div`
       -webkit-appearance: none;
       margin: 0;
     }
-  }
-
-  input[type='number'] {
-    -moz-appearance: textfield;
   }
 `;

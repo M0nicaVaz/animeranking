@@ -1,5 +1,6 @@
 import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
+import { Input } from '../../components/Input';
 
 import { Container, LinkButton } from './styled';
 
@@ -11,12 +12,13 @@ export function Home() {
     <Container>
       <Header />
 
+      <Input placeholder="Pesquisar pelo título" />
       <Section>
         <div className="add-movie">
           <h2>Meus Filmes</h2>
           <LinkButton to="/new">
             <FiPlus />
-            Adicionar Filme
+            Novo Filme
           </LinkButton>
         </div>
 

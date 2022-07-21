@@ -43,9 +43,40 @@ export const Form = styled.form`
     }
   }
 
+  .header-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    > input {
+      flex: 1;
+      padding: 1.9rem 2.4rem;
+      border-radius: 10px;
+      background-color: ${({ theme }) => theme.colors.bg_light};
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 1.6rem;
+      border: none;
+
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.text_ultralight};
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+
   > section {
     width: 100%;
     margin-bottom: 3rem;
+
     p {
       margin-bottom: 2rem;
       color: ${({ theme }) => theme.colors.text_ultralight};
@@ -72,15 +103,9 @@ export const Form = styled.form`
     }
   }
 
-  .split {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3vw;
-
-    div,
-    button {
-      flex: 1;
-    }
+  button {
+    width: min(58rem, 100%);
+    margin: 0 auto;
   }
 `;
 

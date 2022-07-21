@@ -20,17 +20,12 @@ export function New() {
               <FiArrowLeft />
               Voltar
             </ButtonText>
-
             <h1>Novo Filme</h1>
           </header>
 
-          <div className="split">
-            <div>
-              <Input placeholder="Título" />
-            </div>
-            <div>
-              <Input placeholder="Sua nota (de 0 a 5)" type="number" />
-            </div>
+          <div className="header-input">
+            <input placeholder="Título" />
+            <input placeholder="Sua nota (de 0 a 5)" type="number" />
           </div>
 
           <Textarea placeholder="Observações" />
@@ -46,7 +41,6 @@ export function New() {
           </section>
 
           <div className="split ">
-            <Button reverse title="Excluir Filme" />
             <Button title="Salvar Alterações" />
           </div>
         </Form>

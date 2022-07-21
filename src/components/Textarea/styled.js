@@ -10,7 +10,7 @@ export const Container = styled.textarea`
   border: none;
   resize: none;
 
-  margin: 4rem 0;
+  margin: 2rem 0;
   border-radius: 1rem;
   padding: 1.6rem;
 

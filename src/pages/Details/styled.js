@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -29,6 +29,12 @@ export const Container = styled.div`
       align-items: flex-start;
 
       margin-bottom: 3.6rem;
+
+      .action-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
     }
 
     button {
@@ -83,7 +89,7 @@ export const AuthorInfo = styled.div`
   }
 `;
 
-export const ButtonText = styled(Link)`
+export const ButtonText = styled.span`
   margin-top: 2rem;
   background: none;
   border: none;

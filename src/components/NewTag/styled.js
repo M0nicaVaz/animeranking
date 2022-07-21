@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 
   background-color: ${({ theme, isNew }) =>
     isNew ? 'transparent' : theme.colors.bg_light};
@@ -16,7 +16,9 @@ export const Container = styled.div`
   border-radius: 1rem;
   padding-right: 1.6rem;
 
-  > button {
+  button {
+    margin: 0;
+    width: 1.2rem;
     border: none;
     background: none;
   }
@@ -31,11 +33,12 @@ export const Container = styled.div`
 
   > input {
     height: 5.6rem;
-    width: 100%;
 
-    flex: 1;
-    text-align: center;
-    padding: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding: 1.2rem 1rem;
     color: ${({ theme }) => theme.colors.primary};
     background: transparent;
 

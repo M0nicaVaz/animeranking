@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   position: fixed;
   top: 60px;
-  left: ${({ isOpen }) => (isOpen ? `20px` : `0`)};
+  right: ${({ isOpen }) => (isOpen ? `20px` : `0`)};
 
   display: flex;
   justify-content: space-between;

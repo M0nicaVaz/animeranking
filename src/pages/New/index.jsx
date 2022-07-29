@@ -25,7 +25,11 @@ export function New() {
 
           <div className="header-input">
             <input placeholder="Título" />
-            <input placeholder="Sua nota (de 0 a 5)" type="number" />
+            <input
+              placeholder="Sua nota (de 0 a 5)"
+              type="number"
+              maxLength={1}
+            />
           </div>
 
           <Textarea placeholder="Observações" />

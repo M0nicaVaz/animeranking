@@ -93,15 +93,15 @@ export function SignUp() {
         />
         <Button title="Cadastrar" onClick={handleSignUp} />
 
-        <Snackbar isOpen={isOpen} onClose={handleClose}>
-          {alertMessage}
-        </Snackbar>
-
         <ButtonText to="/">
           <FiArrowLeft />
           Voltar para o login
         </ButtonText>
       </Form>
+
+      <Snackbar isOpen={isOpen} onClose={handleClose}>
+        {alertMessage}
+      </Snackbar>
 
       <Background />
     </Container>

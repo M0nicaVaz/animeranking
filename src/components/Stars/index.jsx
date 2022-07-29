@@ -3,13 +3,18 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { AiFillStar } from 'react-icons/ai';
 
 export function Stars({ ratings }) {
+  let stars = [];
+
+  for (let i = 0; i < 5; i++) {
+    const star = i < ratings ? AiFillStar : AiOutlineStar;
+    stars = [...stars, star];
+  }
+
   return (
     <Container>
-      <span> {ratings >= 1 ? <AiFillStar /> : <AiOutlineStar />} </span>
-      <span> {ratings >= 2 ? <AiFillStar /> : <AiOutlineStar />} </span>
-      <span> {ratings >= 3 ? <AiFillStar /> : <AiOutlineStar />} </span>
-      <span> {ratings >= 4 ? <AiFillStar /> : <AiOutlineStar />} </span>
-      <span> {ratings >= 5 ? <AiFillStar /> : <AiOutlineStar />} </span>
+      {stars.map((Star, index) => (
+        <Star key={String(index)} />
+      ))}
     </Container>
   );
 }

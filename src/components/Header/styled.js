@@ -42,6 +42,17 @@ export const Profile = styled.div`
     strong {
       font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
     }
+
+    button {
+      background: none;
+      border: none;
+
+      display: flex;
+      gap: 1rem;
+      color: ${({ theme }) => theme.colors.text_ultralight};
+
+      font-size: clamp(1.4rem, 1.4rem + 0.2vw, 1.6rem);
+    }
   }
 
   img {

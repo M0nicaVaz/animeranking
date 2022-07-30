@@ -13,9 +13,8 @@ export const Container = styled.div`
   right: ${({ isOpen }) => (isOpen ? `20px` : `0`)};
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
 
   border: 0;
   padding: 1rem 2.6rem;
@@ -28,7 +27,14 @@ export const Container = styled.div`
 
   transition: all 200ms ease-in-out;
 
+  span {
+    flex: 1;
+    width: 100%;
+    display: block;
+  }
+
   > button {
+    width: 2rem;
     display: flex;
     align-items: center;
 

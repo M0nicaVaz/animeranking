@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
       localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
       localStorage.setItem('@rocketnotes:token', token);
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setData({ user, token });
     } catch (error) {
       if (error.response) {
@@ -35,6 +35,34 @@ function AuthProvider({ children }) {
     localStorage.removeItem('@rocketnotes:user');
 
     setData({});
+  }
+
+  async function updateProfile({ user, avatarFile }) {
+    try {
+      if (avatarFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append('avatar', avatarFile);
+
+        const response = await api.patch('/users/avatar', fileUploadForm);
+        user.avatar = response.data.avatar;
+      }
+
+      await api.put('/users', user);
+      localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
+
+      setData({ user, token: data.token });
+
+      setIsOpen(true);
+      setAlertMessage('Perfil atualizado!');
+    } catch (error) {
+      if (error.response) {
+        setIsOpen(true);
+        setAlertMessage(error.response.data.message);
+      } else {
+        setIsOpen(true);
+        setAlertMessage('Erro ao atualizar o perfil.');
+      }
+    }
   }
 
   useEffect(() => {
@@ -58,6 +86,7 @@ function AuthProvider({ children }) {
         setIsOpen,
         signIn,
         signOut,
+        updateProfile,
         user: data.user,
       }}
     >

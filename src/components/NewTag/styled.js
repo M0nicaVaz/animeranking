@@ -32,6 +32,7 @@ export const Container = styled.div`
   }
 
   > input {
+    flex: 1;
     height: 5.6rem;
 
     white-space: nowrap;

@@ -5,6 +5,7 @@ export function Snackbar({ isOpen, onClose, children }) {
   return (
     <Container isOpen={isOpen}>
       <span>{children}</span>
+
       <button onClick={onClose}>
         <FiX />
       </button>

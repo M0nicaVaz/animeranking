@@ -17,7 +17,7 @@ export function New() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const [ratings, setRatings] = useState([]);
+  const [rating, setRating] = useState([]);
 
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState('');
@@ -55,9 +55,11 @@ export function New() {
       return null;
     }
 
-    if (ratings > 5) {
+    if (rating > 5) {
       setIsOpen(true);
       setAlertMessage('Digite uma nota de 0 a 5!');
+
+      return null;
     }
 
     if (newTag) {
@@ -72,7 +74,7 @@ export function New() {
         title,
         description,
         tags,
-        ratings,
+        rating,
       });
     } catch (e) {
       alert(e.message);
@@ -110,7 +112,7 @@ export function New() {
             <input
               placeholder="Sua nota (de 0 a 5)"
               type="number"
-              onChange={(e) => setRatings(e.target.value)}
+              onChange={(e) => setRating(e.target.value)}
             />
           </div>
 
@@ -146,9 +148,7 @@ export function New() {
             {alertMessage}
           </Snackbar>
 
-          <div>
-            <Button title="Salvar Alterações" onClick={handleNewMovie} />
-          </div>
+          <Button title="Salvar Alterações" onClick={handleNewMovie} />
         </Form>
       </main>
     </Container>

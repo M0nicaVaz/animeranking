@@ -1,19 +1,30 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Stars } from '../../components/Stars';
 import { Tag } from '../../components/Tag';
 import { Header } from '../../components/Header';
 import { Modal } from '../../components/Modal';
 import { Container, AuthorInfo, MovieInfo } from './styled';
-
 import { ButtonText } from '../../components/ButtonText';
 
-import { FiClock, FiArrowLeft } from 'react-icons/fi';
+import { FiClock } from 'react-icons/fi';
 
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { api } from '../../services/api';
+import { useAuth } from '../../hooks/useAuth';
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
-export function Details(data) {
+export function Details() {
+  const [data, setData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
+
+  const params = useParams();
   const navigate = useNavigate();
+
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
 
   function handleModal() {
     setIsOpen(!isOpen);
@@ -23,56 +34,69 @@ export function Details(data) {
     navigate(-1);
   }
 
+  async function handleRemove() {
+    await api.delete(`/movies/${params.id}`);
+    navigate('/');
+  }
+
+  useEffect(() => {
+    async function fetchMovie() {
+      const response = await api.get(`/movies/${params.id}`);
+      setData(response.data);
+    }
+
+    fetchMovie();
+  }, []);
+
   return (
     <Container>
       <Header />
 
-      <main>
-        <header>
-          <div className="action-btn">
-            <ButtonText title="Voltar" onClick={handleGoBack} />
+      {data && (
+        <main>
+          <header>
+            <div className="action-btn">
+              <ButtonText title="Voltar" onClick={handleGoBack} />
 
-            <ButtonText title="Excluir Filme" onClick={handleModal} noIcon />
-          </div>
-
-          <MovieInfo>
-            <h1>{data.title || 'Tenki No Ko'} </h1>
-            <Stars ratings={data.ratings || 4} />
-          </MovieInfo>
-
-          <AuthorInfo>
-            <div>
-              <img src="https://github.com/m0nicavaz.png" />
-
-              <span>Por {data.name || 'Monica Vaz'}</span>
+              <ButtonText title="Excluir Filme" onClick={handleModal} noIcon />
             </div>
 
-            <div>
-              <FiClock />
-              <span>{data.updated_at || '07/06/2022 15:59'}</span>
-            </div>
-          </AuthorInfo>
+            <MovieInfo>
+              <h1>{data.title} </h1>
+              <Stars ratings={data.rating} />
+            </MovieInfo>
 
-          <section className="tags">
-            {data.tags && (
+            <AuthorInfo>
               <div>
-                {data.tags.map((tag) => (
-                  <Tag title={tag.name} key={tag.id} />
-                ))}
-              </div>
-            )}
-          </section>
-        </header>
+                <img src={avatarUrl} />
 
-        <p>
-          {data.description ||
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veritatis facilis enim ad? Magni nostrum obcaecati, provident velit blanditiis aut neque iste cupiditate aperiam dolorem animi labore, nisi magnam doloribus praesentium perspiciatis ea debitis dolore tempore sapiente nobis quis? Mollitia doloremque, accusamus a eos laborum nam enim adipisci similique facilis rem veritatis quisquam, ex, rerum deleniti quae est modi officiis eveniet minima consectetur! Dolorem dolorum placeat impedit quas molestiae libero molestias nemo! Tempora dignissimos non mollitia rem autem ad necessitatibus.Aesentium perspiciatis ea debitis dolore tempore sapiente nobis quis? Mollitia doloremque, accusamus a eos laborum nam enim adipisci similique facilis rem veritatis quisquam, ex, rerum deleniti quae est modi officiis eveniet minima consectetur! Dolorem dolorum placeat impedit quas molestiae libero molestias nemo! Tempora dignissimos non mollitia rem autem ad necessitatibus'}
-        </p>
-      </main>
+                <span>Por {user.name}</span>
+              </div>
+
+              <div>
+                <FiClock />
+                <span>{data.updated_at}</span>
+              </div>
+            </AuthorInfo>
+
+            <section className="tags">
+              {data.tags && (
+                <div>
+                  {data.tags.map((tag) => (
+                    <Tag title={tag.name} key={tag.id} />
+                  ))}
+                </div>
+              )}
+            </section>
+          </header>
+
+          <p>{data.description}</p>
+        </main>
+      )}
 
       <Modal isOpen={isOpen}>
         <button onClick={handleModal}>Cancelar</button>
-        <button onClick={handleGoBack}>Excluir</button>
+        <button onClick={handleRemove}>Excluir</button>
       </Modal>
     </Container>
   );

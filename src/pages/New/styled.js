@@ -102,13 +102,14 @@ export const Form = styled.form`
     }
   }
 
-  button {
+  > button {
     width: min(58rem, 100%);
     margin: 0 auto;
   }
 `;
 
 export const ButtonText = styled.button`
+  text-align: right;
   background: none;
   border: none;
 

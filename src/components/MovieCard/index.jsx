@@ -4,10 +4,10 @@ import { Container } from './styled';
 
 export function MovieCard({ data, ...rest }) {
   return (
-    <Container data={data} to={`/details/:${data.id}`} {...rest}>
+    <Container data={data} to={`/details/${data.id}`} {...rest}>
       <div>
         <h3>{data.title}</h3>
-        <Stars ratings={data.ratings} />
+        <Stars ratings={data.rating} />
       </div>
 
       <p>{data.description}</p>

@@ -33,6 +33,7 @@ export const Container = styled.div`
 
   > input {
     flex: 1;
+    width: 100%;
     height: 5.6rem;
 
     white-space: nowrap;

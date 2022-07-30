@@ -1,14 +1,93 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Header } from '../../components/Header';
-import { Input } from '../../components/Input';
 import { Textarea } from '../../components/Textarea';
 import { NewTag } from '../../components/NewTag';
 import { FiArrowLeft } from 'react-icons/fi';
+import { Snackbar } from '../../components/Snackbar';
 
 import { Button } from '../../components/Button';
+
+import { api } from '../../services/api';
 
 import { Container, Form, ButtonText } from './styled';
 
 export function New() {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const [ratings, setRatings] = useState([]);
+
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  function handleGoBack() {
+    navigate(-1);
+  }
+
+  function handleAddTag() {
+    setTags((prevState) => [...prevState, newTag]);
+    setNewTag('');
+  }
+
+  function handleRemoveTag(deleted) {
+    setTags((prevState) => prevState.filter((tag) => tag !== deleted));
+  }
+
+  function handleClose(event) {
+    event.preventDefault();
+    setIsOpen(!isOpen);
+
+    return null;
+  }
+
+  async function handleNewMovie() {
+    if (!title) {
+      setIsOpen(true);
+      setAlertMessage('Digite o título!');
+
+      return null;
+    }
+
+    if (ratings > 5) {
+      setIsOpen(true);
+      setAlertMessage('Digite uma nota de 0 a 5!');
+    }
+
+    if (newTag) {
+      setIsOpen(true);
+      setAlertMessage('Ops! Você esqueceu de adicionar a tag!');
+
+      return null;
+    }
+
+    try {
+      await api.post('/movies', {
+        title,
+        description,
+        tags,
+        ratings,
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+
+    navigate(-1);
+    return null;
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 5000);
+  }, [isOpen]);
+
   return (
     <Container>
       <Header />
@@ -16,7 +95,7 @@ export function New() {
       <main>
         <Form>
           <header>
-            <ButtonText to="/">
+            <ButtonText onClick={handleGoBack}>
               <FiArrowLeft />
               Voltar
             </ButtonText>
@@ -24,28 +103,51 @@ export function New() {
           </header>
 
           <div className="header-input">
-            <input placeholder="Título" />
+            <input
+              placeholder="Título"
+              onChange={(e) => setTitle(e.target.value)}
+            />
             <input
               placeholder="Sua nota (de 0 a 5)"
               type="number"
-              maxLength={1}
+              onChange={(e) => setRatings(e.target.value)}
             />
           </div>
 
-          <Textarea placeholder="Observações" />
+          <Textarea
+            placeholder="Observações"
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
           <section>
-            <p>Tags</p>
+            <span>Tags</span>
             <div className="tags">
-              <NewTag value="terror" />
-              <NewTag value="FilmeMuitoBom" />
-              <NewTag value="anime" />
-              <NewTag isNew placeholder="Nova Tag" />
+              {tags.map((tag, index) => (
+                <NewTag
+                  key={String(index)}
+                  value={tag}
+                  onClick={() => {
+                    handleRemoveTag(tag);
+                  }}
+                />
+              ))}
+
+              <NewTag
+                isNew
+                placeholder="Nova Tag"
+                onChange={(e) => setNewTag(e.target.value)}
+                value={newTag}
+                onClick={handleAddTag}
+              />
             </div>
           </section>
 
-          <div className="split ">
-            <Button title="Salvar Alterações" />
+          <Snackbar isOpen={isOpen} onClose={handleClose}>
+            {alertMessage}
+          </Snackbar>
+
+          <div>
+            <Button title="Salvar Alterações" onClick={handleNewMovie} />
           </div>
         </Form>
       </main>

@@ -6,7 +6,7 @@ import { api } from '../../services/api';
 import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
 import { MovieCard } from '../../components/MovieCard';
-import { FiPlus, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { FiPlus, FiArrowRight } from 'react-icons/fi';
 
 import { Container, LinkButton, Button } from './styled';
 

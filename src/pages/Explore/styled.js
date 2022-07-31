@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -12,51 +11,72 @@ export const Container = styled.div`
     'search'
     'content';
 
+  section {
+    > h2,
+    > button {
+      padding: 0 2.4rem;
+    }
+  }
+
   main {
     grid-area: content;
+    height: 60vh;
+    margin: 2rem auto 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 1.5rem 6rem;
+
     display: flex;
+
     gap: 2rem;
     flex-wrap: wrap;
 
     justify-content: center;
+    max-width: 90vw;
 
-    max-width: 100vw;
+    .loading {
+      align-self: center;
+      font-size: 2.8rem;
+    }
 
-    height: 60vh;
-    margin: 0 auto;
-
-    overflow-y: auto;
-    padding: 0 1.5rem 4rem;
+    @media (max-width: 480px) {
+      margin: 0;
+    }
   }
 
   .search {
     width: 100%;
     display: flex;
     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
 
     gap: 2rem;
     align-items: center;
     padding: 0 1.5rem 2.2rem;
-  }
 
-  input {
-    flex: 1;
+    input {
+      border-radius: 10px;
+      padding: 1.9rem 2.4rem;
+      background-color: ${({ theme }) => theme.colors.bg_light};
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 1.6rem;
+      border: none;
+      flex: 1;
 
-    border-radius: 10px;
-    padding: 1.9rem 2.4rem;
-    background-color: ${({ theme }) => theme.colors.bg_light};
-    color: ${({ theme }) => theme.colors.primary};
-    font-size: 1.6rem;
-    border: none;
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.text_ultralight};
+      }
 
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.text_ultralight};
-    }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+      @media (max-width: 480px) {
+        padding: 1.6rem 2.4rem;
+      }
     }
   }
 `;
@@ -67,13 +87,11 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.bg_dark};
 
   font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
-  height: 5.6rem;
   border-radius: 1rem;
 
   width: 16.5rem;
-
   border: none;
-  padding: 0 1.6rem;
+  padding: 2rem 1.6rem;
   font-weight: 500;
 
   display: flex;
@@ -81,8 +99,10 @@ export const Button = styled.button`
   justify-content: center;
   gap: 0.5rem;
 
-  @media (max-width: 480px) {
-    width: 12rem;
-    padding: 0 1rem;
+  @media (max-width: 520px) {
+    min-width: 14rem;
+    gap: 0.5rem;
+    flex: 1;
+    padding: 1.6rem 0.3rem;
   }
 `;

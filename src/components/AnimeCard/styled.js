@@ -13,12 +13,9 @@ export const Container = styled.div`
 
   gap: 1.8rem;
 
-  max-width: 36rem;
   min-width: 30rem;
   flex: 1;
-  min-height: 20rem;
-
-  margin: 2.4rem 0;
+  margin: 2.4rem 0 0;
 
   padding: 2rem;
   border-radius: 16px;
@@ -38,15 +35,18 @@ export const Container = styled.div`
   }
 
   img {
-    width: 18rem;
-    height: 24rem;
+    width: 16rem;
+    height: 20rem;
     object-fit: cover;
     border-radius: 6px;
   }
 
-  div {
+  .save-btn {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.colors};
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;

@@ -8,15 +8,18 @@ export const Container = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
 
-  gap: 1.8rem;
+  gap: 2rem;
 
-  width: 100%;
-  min-height: 20rem;
+  flex: 1;
 
-  margin: 2.4rem 0;
+  height: 24rem;
+  min-width: 38rem;
 
-  padding: 3.2rem;
+  margin: 2rem 0 0;
+
+  padding: 2rem 3rem;
   border-radius: 16px;
   border: none;
 
@@ -38,7 +41,8 @@ export const Container = styled(Link)`
     -webkit-line-clamp: 4;
   }
 
-  > div {
+  .header {
+    width: 100%;
     display: flex;
     flex-direction: column;
 
@@ -48,6 +52,12 @@ export const Container = styled(Link)`
       text-transform: capitalize;
       font-size: clamp(1.6rem, 1.8rem + 0.5vw, 2.2rem);
       color: ${({ theme }) => theme.colors.primary};
+      text-overflow: ellipsis;
+      word-break: break-all;
     }
+  }
+
+  @media (max-width: 480px) {
+    min-height: 10rem;
   }
 `;

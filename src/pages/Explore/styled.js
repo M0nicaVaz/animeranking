@@ -12,17 +12,36 @@ export const Container = styled.div`
     'search'
     'content';
 
-  .add-anime {
+  main {
+    grid-area: content;
     display: flex;
     gap: 2rem;
-    justify-content: space-between;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    max-width: 100vw;
+
+    height: 60vh;
+    margin: 0 auto;
+
+    overflow-y: auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .search {
+    width: 100%;
+    display: flex;
     align-items: center;
-    padding: 0 1.5rem;
+
+    gap: 2rem;
+    align-items: center;
+    padding: 0 1.5rem 2.2rem;
   }
 
   input {
-    width: 100%;
-    margin-bottom: 2.4rem;
+    flex: 1;
+
     border-radius: 10px;
     padding: 1.9rem 2.4rem;
     background-color: ${({ theme }) => theme.colors.bg_light};
@@ -40,17 +59,9 @@ export const Container = styled.div`
       margin: 0;
     }
   }
-
-  main {
-    grid-area: content;
-    height: 60vh;
-    margin: 2rem auto 0;
-    overflow-y: auto;
-    padding: 0 1.5rem 4rem;
-  }
 `;
 
-export const LinkButton = styled(Link)`
+export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.accent};
 
   color: ${({ theme }) => theme.colors.bg_dark};
@@ -60,7 +71,6 @@ export const LinkButton = styled(Link)`
   border-radius: 1rem;
 
   width: 16.5rem;
-  margin-top: 1.6rem;
 
   border: none;
   padding: 0 1.6rem;
@@ -70,30 +80,6 @@ export const LinkButton = styled(Link)`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-
-  @media (max-width: 480px) {
-    width: 12rem;
-    padding: 0 1rem;
-  }
-`;
-
-export const Button = styled(Link)`
-  background: none;
-  border: none;
-  margin-bottom: 2rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  color: ${({ theme }) => theme.colors.accent};
-
-  font-size: clamp(1.4rem, 1.2rem + 0.3vw, 2rem);
-
-  svg {
-    color: ${({ theme }) => theme.colors.accent};
-    align-self: center;
-  }
 
   @media (max-width: 480px) {
     width: 12rem;

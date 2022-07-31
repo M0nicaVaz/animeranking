@@ -5,7 +5,7 @@ export function Modal({ isOpen, children }) {
     <Container isOpen={isOpen}>
       <div>
         <div>
-          <strong>Deseja excluir este filme?</strong>
+          <strong>Deseja excluir este anime?</strong>
           <span>Essa ação não pode ser desfeita.</span>
         </div>
 

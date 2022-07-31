@@ -64,7 +64,7 @@ export function SignUp() {
     <Container>
       <Form>
         <NarutoIcon />
-        <h1>Anime Rank</h1>
+        <h1>Anime Ranking</h1>
         <p>Aplicação para rankear os seus animes!</p>
 
         <h2>Crie sua conta</h2>

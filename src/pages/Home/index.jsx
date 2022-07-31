@@ -6,9 +6,9 @@ import { api } from '../../services/api';
 import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
 import { MovieCard } from '../../components/MovieCard';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 
-import { Container, LinkButton } from './styled';
+import { Container, LinkButton, Button } from './styled';
 
 export function Home() {
   const [search, setSearch] = useState('');
@@ -34,13 +34,20 @@ export function Home() {
       <Header />
 
       <Section>
+        <div>
+          <Button to="/explore">
+            Explorar Animes
+            <FiArrowRight />
+          </Button>
+        </div>
+
         <input
           type="text"
           placeholder="Pesquisar pelo título"
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <div className="add-movie">
+        <div className="add-anime">
           <h2>Meus Animes</h2>
           <LinkButton to="/new">
             <FiPlus />

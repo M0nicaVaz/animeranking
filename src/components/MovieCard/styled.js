@@ -20,6 +20,10 @@ export const Container = styled(Link)`
   border-radius: 16px;
   border: none;
 
+  svg {
+    color: ${({ theme }) => theme.colors.accent_md};
+  }
+
   p {
     font-size: clamp(1.2rem, 1.2rem + 0.8vw, 1.6rem);
 
@@ -41,6 +45,7 @@ export const Container = styled(Link)`
     gap: 8px;
 
     h3 {
+      text-transform: capitalize;
       font-size: clamp(1.6rem, 1.8rem + 0.5vw, 2.2rem);
       color: ${({ theme }) => theme.colors.primary};
     }

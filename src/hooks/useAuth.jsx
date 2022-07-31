@@ -14,8 +14,8 @@ function AuthProvider({ children }) {
       const response = await api.post('/sessions', { email, password });
       const { user, token } = response.data;
 
-      localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
-      localStorage.setItem('@rocketmovies:token', token);
+      localStorage.setItem('@animerank:user', JSON.stringify(user));
+      localStorage.setItem('@animerank:token', token);
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setData({ user, token });
@@ -31,8 +31,8 @@ function AuthProvider({ children }) {
   }
 
   function signOut() {
-    localStorage.removeItem('@rocketmovies:token');
-    localStorage.removeItem('@rocketmovies:user');
+    localStorage.removeItem('@animerank:token');
+    localStorage.removeItem('@animerank:user');
 
     setData({});
   }
@@ -48,7 +48,7 @@ function AuthProvider({ children }) {
       }
 
       await api.put('/users', user);
-      localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
+      localStorage.setItem('@animerank:user', JSON.stringify(user));
 
       setData({ user, token: data.token });
 
@@ -66,8 +66,8 @@ function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('@rocketmovies:token');
-    const user = localStorage.getItem('@rocketmovies:user');
+    const token = localStorage.getItem('@animerank:token');
+    const user = localStorage.getItem('@animerank:user');
 
     if (token && user) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;

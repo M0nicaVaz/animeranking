@@ -47,7 +47,7 @@ export const Background = styled.div`
   background: url(${backgroundImg}) no-repeat center center;
   background-size: cover;
 
-  opacity: 0.4;
+  opacity: 0.6;
 `;
 
 export const ButtonText = styled(Link)`

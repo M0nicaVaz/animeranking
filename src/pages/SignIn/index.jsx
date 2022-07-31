@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Snackbar } from '../../components/Snackbar';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { NarutoIcon } from '../../components/NarutoIcon';
 import { Container, Form, ButtonText, Background } from './styled';
 
 export function SignIn() {
@@ -33,11 +34,10 @@ export function SignIn() {
   return (
     <Container>
       <Form>
-        <h1>Rocket Movies</h1>
-        <p>Aplicação para acompanhar tudo que assistir.</p>
-
+        <NarutoIcon />
+        <h1>Anime Rank</h1>
+        <p>Aplicação para rankear os seus animes!</p>
         <h2>Faça seu login</h2>
-
         <Input
           placeholder="E-mail"
           type="email"
@@ -50,9 +50,7 @@ export function SignIn() {
           icon={FiLock}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <Button title="Entrar" onClick={handleSignIn} />
-
         <ButtonText to="/register">Criar conta</ButtonText>
       </Form>
 

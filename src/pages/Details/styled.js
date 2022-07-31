@@ -59,6 +59,7 @@ export const MovieInfo = styled.div`
   gap: 2.5rem;
 
   font-size: clamp(1.8rem, 1.6rem + 0.5vw, 3rem);
+  text-transform: capitalize;
   svg {
     align-self: center;
   }

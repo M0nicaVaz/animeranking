@@ -31,7 +31,7 @@ export function Details() {
   }
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
 
   async function handleRemove() {
@@ -58,7 +58,7 @@ export function Details() {
             <div className="action-btn">
               <ButtonText title="Voltar" onClick={handleGoBack} />
 
-              <ButtonText title="Excluir Filme" onClick={handleModal} noIcon />
+              <ButtonText title="Excluir Anime" onClick={handleModal} noIcon />
             </div>
 
             <MovieInfo>

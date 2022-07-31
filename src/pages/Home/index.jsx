@@ -41,10 +41,10 @@ export function Home() {
         />
 
         <div className="add-movie">
-          <h2>Meus Filmes</h2>
+          <h2>Meus Animes</h2>
           <LinkButton to="/new">
             <FiPlus />
-            Novo Filme
+            Novo Anime
           </LinkButton>
         </div>
 

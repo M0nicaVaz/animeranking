@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
   grid-area: header;
@@ -15,8 +16,18 @@ export const Container = styled.header`
   gap: 2rem;
 
   padding: 0 min(8%, 12rem);
+`;
 
-  > h2 {
+export const Logo = styled(Link)`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  img {
+    width: clamp(2.8rem, 2.8rem + 1vw, 4.2rem);
+  }
+
+  h2 {
     color: ${({ theme }) => theme.colors.accent};
     font-size: clamp(1.8rem, 1.8rem + 1vw, 2.8rem);
 

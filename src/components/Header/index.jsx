@@ -1,10 +1,11 @@
-import { Container, Profile } from './styled';
+import { Container, Profile, Logo } from './styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
 
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
+import { NarutoIcon } from '../../components/NarutoIcon';
 
 export function Header() {
   const { signOut, user } = useAuth();
@@ -22,7 +23,10 @@ export function Header() {
 
   return (
     <Container>
-      <h2>Rocket Movies</h2>
+      <Logo to="/">
+        <NarutoIcon />
+        <h2>Anime Rank</h2>
+      </Logo>
 
       <Profile>
         <div>

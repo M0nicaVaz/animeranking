@@ -31,7 +31,7 @@ export function Profile() {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
 
   async function handleUpdate() {

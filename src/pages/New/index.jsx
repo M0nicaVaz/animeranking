@@ -28,7 +28,7 @@ export function New() {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
 
   function handleAddTag() {
@@ -55,7 +55,7 @@ export function New() {
       return null;
     }
 
-    if (rating > 5) {
+    if (rating < 0 || rating > 5) {
       setIsOpen(true);
       setAlertMessage('Digite uma nota de 0 a 5!');
 
@@ -101,7 +101,7 @@ export function New() {
               <FiArrowLeft />
               Voltar
             </ButtonText>
-            <h1>Novo Filme</h1>
+            <h1>Novo Anime</h1>
           </header>
 
           <div className="header-input">

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Snackbar } from '../../components/Snackbar';
-
+import { NarutoIcon } from '../../components/NarutoIcon';
 import { Container, Form, Background, ButtonText } from './styled';
 
 export function SignUp() {
@@ -63,8 +63,9 @@ export function SignUp() {
   return (
     <Container>
       <Form>
-        <h1>Rocket Movies</h1>
-        <p>Aplicação para acompanhar tudo que assistir.</p>
+        <NarutoIcon />
+        <h1>Anime Rank</h1>
+        <p>Aplicação para rankear os seus animes!</p>
 
         <h2>Crie sua conta</h2>
         <Input

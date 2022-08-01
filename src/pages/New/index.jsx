@@ -148,13 +148,12 @@ export function New() {
             </div>
           </section>
 
-          <Snackbar isOpen={isOpen} onClose={handleClose}>
-            {alertMessage}
-          </Snackbar>
-
           <Button title="Salvar Alterações" onClick={handleNewMovie} />
         </Form>
       </main>
+      <Snackbar isOpen={isOpen} onClose={handleClose}>
+        {alertMessage}
+      </Snackbar>
     </Container>
   );
 }

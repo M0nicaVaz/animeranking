@@ -69,6 +69,7 @@ export function SignUp() {
 
         <h2>Crie sua conta</h2>
         <Input
+          required
           placeholder="Nome"
           type="text"
           icon={FiUser}
@@ -77,6 +78,7 @@ export function SignUp() {
           }}
         />
         <Input
+          required
           placeholder="E-mail"
           type="email"
           icon={FiMail}
@@ -85,6 +87,7 @@ export function SignUp() {
           }}
         />
         <Input
+          required
           placeholder="Senha"
           type="password"
           icon={FiLock}

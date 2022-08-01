@@ -5,14 +5,14 @@ import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
-import { MovieCard } from '../../components/MovieCard';
+import { RankingCard } from '../../components/RankingCard';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 
 import { Container, LinkButton, Button } from './styled';
 
 export function Home() {
   const [search, setSearch] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [anime, setAnime] = useState([]);
 
   const navigate = useNavigate();
 
@@ -21,12 +21,12 @@ export function Home() {
   }
 
   useEffect(() => {
-    async function fetchMovies() {
-      const response = await api.get(`/movies/?title=${search}`);
-      setMovies(response.data);
+    async function fetchAnime() {
+      const response = await api.get(`/animes/?title=${search}`);
+      setAnime(response.data);
     }
 
-    fetchMovies();
+    fetchAnime();
   }, [search]);
 
   return (
@@ -56,8 +56,8 @@ export function Home() {
         </div>
 
         <main>
-          {movies.map((movie) => (
-            <MovieCard
+          {anime.map((movie) => (
+            <RankingCard
               key={String(movie.id)}
               data={movie}
               onClick={() => {

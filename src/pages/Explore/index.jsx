@@ -63,13 +63,19 @@ export function Explore() {
         </div>
 
         <main>
-          {animes.length > 0
-            ? animes.map((anime) => (
+          {topAnimes.length > 0 ? (
+            animes.length > 0 ? (
+              animes.map((anime) => (
                 <AnimeCard data={anime} key={anime.mal_id} />
               ))
-            : topAnimes.map((anime) => (
+            ) : (
+              topAnimes.map((anime) => (
                 <AnimeCard data={anime} key={anime.mal_id} />
-              ))}
+              ))
+            )
+          ) : (
+            <span className="loading">Carregando... </span>
+          )}
         </main>
       </Section>
     </Container>

@@ -15,9 +15,9 @@ import { Container, Form, ButtonText } from './styled';
 
 export function New() {
   const { slug } = useParams();
-  const newSlug = slug ? slug.split('_').join(' ') : '';
+  const titleFromParam = slug ? slug.split('_').join(' ') : '';
 
-  const [title, setTitle] = useState(newSlug);
+  const [title, setTitle] = useState(titleFromParam);
   const [description, setDescription] = useState('');
 
   const [rating, setRating] = useState([]);
@@ -73,7 +73,7 @@ export function New() {
     }
 
     try {
-      await api.post('/movies', {
+      await api.post('/animes', {
         title,
         description,
         tags,

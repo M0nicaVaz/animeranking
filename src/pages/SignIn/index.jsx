@@ -39,12 +39,14 @@ export function SignIn() {
         <p>Aplicação para rankear os seus animes!</p>
         <h2>Faça seu login</h2>
         <Input
+          required
           placeholder="E-mail"
           type="email"
           icon={FiMail}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
+          required
           placeholder="Senha"
           type="password"
           icon={FiLock}

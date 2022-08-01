@@ -35,13 +35,13 @@ export function Details() {
   }
 
   async function handleRemove() {
-    await api.delete(`/movies/${params.id}`);
+    await api.delete(`/animes/${params.id}`);
     navigate('/');
   }
 
   useEffect(() => {
     async function fetchMovie() {
-      const response = await api.get(`/movies/${params.id}`);
+      const response = await api.get(`/animes/${params.id}`);
       setData(response.data);
     }
 

@@ -37,6 +37,7 @@ export const Container = styled.div`
     .loading {
       align-self: center;
       font-size: 2.8rem;
+      color: ${({ theme }) => theme.colors.accent_md};
     }
 
     @media (max-width: 480px) {

@@ -5,6 +5,7 @@ import { Home } from '../pages/Home';
 import { Details } from '../pages/Details';
 import { Profile } from '../pages/Profile';
 import { Explore } from '../pages/Explore';
+import { NotFound } from '../pages/NotFound';
 
 export function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export function AppRoutes() {
       <Route path="/details/:id" element={<Details />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/explore" element={<Explore />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -112,12 +112,11 @@ export function Profile() {
           onChange={(e) => setNewPassword(e.target.value)}
         />
 
-        <Snackbar isOpen={isOpen} onClose={handleClose}>
-          {alertMessage}
-        </Snackbar>
-
         <Button title="Salvar" onClick={handleUpdate} />
       </Form>
+      <Snackbar isOpen={isOpen} onClose={handleClose}>
+        {alertMessage}
+      </Snackbar>
     </Container>
   );
 }

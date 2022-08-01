@@ -5,14 +5,14 @@ import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
 import { Section } from '../../components/Section';
-import { MovieCard } from '../../components/MovieCard';
-import { FiPlus } from 'react-icons/fi';
+import { RankingCard } from '../../components/RankingCard';
+import { FiPlus, FiArrowRight } from 'react-icons/fi';
 
-import { Container, LinkButton } from './styled';
+import { Container, LinkButton, Button } from './styled';
 
 export function Home() {
   const [search, setSearch] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [anime, setAnime] = useState([]);
 
   const navigate = useNavigate();
 
@@ -21,12 +21,12 @@ export function Home() {
   }
 
   useEffect(() => {
-    async function fetchMovies() {
-      const response = await api.get(`/movies/?title=${search}`);
-      setMovies(response.data);
+    async function fetchAnime() {
+      const response = await api.get(`/animes/?title=${search}`);
+      setAnime(response.data);
     }
 
-    fetchMovies();
+    fetchAnime();
   }, [search]);
 
   return (
@@ -34,13 +34,20 @@ export function Home() {
       <Header />
 
       <Section>
+        <div>
+          <Button to="/explore">
+            Explorar Animes
+            <FiArrowRight />
+          </Button>
+        </div>
+
         <input
           type="text"
           placeholder="Pesquisar pelo título"
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <div className="add-movie">
+        <div className="add-anime">
           <h2>Meus Animes</h2>
           <LinkButton to="/new">
             <FiPlus />
@@ -49,8 +56,8 @@ export function Home() {
         </div>
 
         <main>
-          {movies.map((movie) => (
-            <MovieCard
+          {anime.map((movie) => (
+            <RankingCard
               key={String(movie.id)}
               data={movie}
               onClick={() => {

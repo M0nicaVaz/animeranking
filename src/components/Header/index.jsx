@@ -25,7 +25,7 @@ export function Header() {
     <Container>
       <Logo to="/">
         <NarutoIcon />
-        <h2>Anime Rank</h2>
+        <h2>Anime Ranking</h2>
       </Logo>
 
       <Profile>

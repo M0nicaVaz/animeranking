@@ -5,6 +5,7 @@ export const Container = styled.button`
   border: none;
 
   display: flex;
+  align-items: center;
   gap: 1rem;
   color: ${({ theme }) => theme.colors.accent};
 

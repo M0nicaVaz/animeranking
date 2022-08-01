@@ -12,7 +12,7 @@ export const Container = styled.div`
     'search'
     'content';
 
-  .add-movie {
+  .add-anime {
     display: flex;
     gap: 2rem;
     justify-content: space-between;
@@ -46,7 +46,13 @@ export const Container = styled.div`
     height: 60vh;
     margin: 2rem auto 0;
     overflow-y: auto;
-    padding: 0 1.5rem 4rem;
+    padding: 0 1.5rem 12rem;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    gap: 2rem;
   }
 `;
 
@@ -56,14 +62,14 @@ export const LinkButton = styled(Link)`
   color: ${({ theme }) => theme.colors.bg_dark};
 
   font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
-  height: 5.6rem;
+
   border-radius: 1rem;
 
   width: 16.5rem;
   margin-top: 1.6rem;
 
   border: none;
-  padding: 0 1.6rem;
+  padding: 2rem 1.6rem;
   font-weight: 500;
 
   display: flex;
@@ -72,7 +78,26 @@ export const LinkButton = styled(Link)`
   gap: 0.5rem;
 
   @media (max-width: 480px) {
-    width: 12rem;
-    padding: 0 1rem;
+    flex: 1;
+    padding: 1.4rem 0.6rem;
+  }
+`;
+
+export const Button = styled(Link)`
+  background: none;
+  border: none;
+  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.accent};
+
+  font-size: clamp(1.4rem, 1.4rem + 0.3vw, 2rem);
+
+  svg {
+    color: ${({ theme }) => theme.colors.accent};
+    align-self: center;
   }
 `;

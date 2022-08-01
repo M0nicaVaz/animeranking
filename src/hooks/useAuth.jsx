@@ -14,8 +14,8 @@ function AuthProvider({ children }) {
       const response = await api.post('/sessions', { email, password });
       const { user, token } = response.data;
 
-      localStorage.setItem('@animerank:user', JSON.stringify(user));
-      localStorage.setItem('@animerank:token', token);
+      localStorage.setItem('@animeranking:user', JSON.stringify(user));
+      localStorage.setItem('@animeranking:token', token);
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setData({ user, token });
@@ -31,8 +31,8 @@ function AuthProvider({ children }) {
   }
 
   function signOut() {
-    localStorage.removeItem('@animerank:token');
-    localStorage.removeItem('@animerank:user');
+    localStorage.removeItem('@animeranking:token');
+    localStorage.removeItem('@animeranking:user');
 
     setData({});
   }
@@ -48,7 +48,7 @@ function AuthProvider({ children }) {
       }
 
       await api.put('/users', user);
-      localStorage.setItem('@animerank:user', JSON.stringify(user));
+      localStorage.setItem('@animeranking:user', JSON.stringify(user));
 
       setData({ user, token: data.token });
 
@@ -66,8 +66,8 @@ function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('@animerank:token');
-    const user = localStorage.getItem('@animerank:user');
+    const token = localStorage.getItem('@animeranking:token');
+    const user = localStorage.getItem('@animeranking:user');
 
     if (token && user) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;

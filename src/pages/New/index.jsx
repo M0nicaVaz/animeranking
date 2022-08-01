@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Header } from '../../components/Header';
 import { Textarea } from '../../components/Textarea';
@@ -14,7 +14,10 @@ import { api } from '../../services/api';
 import { Container, Form, ButtonText } from './styled';
 
 export function New() {
-  const [title, setTitle] = useState('');
+  const { slug } = useParams();
+  const titleFromParam = slug ? slug.split('_').join(' ') : '';
+
+  const [title, setTitle] = useState(titleFromParam);
   const [description, setDescription] = useState('');
 
   const [rating, setRating] = useState([]);
@@ -28,7 +31,7 @@ export function New() {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate('/');
+    navigate(-1);
   }
 
   function handleAddTag() {
@@ -55,7 +58,7 @@ export function New() {
       return null;
     }
 
-    if (rating < 0 || rating > 5) {
+    if (rating < 0 || rating > 5 || rating.length === 0) {
       setIsOpen(true);
       setAlertMessage('Digite uma nota de 0 a 5!');
 
@@ -70,7 +73,7 @@ export function New() {
     }
 
     try {
-      await api.post('/movies', {
+      await api.post('/animes', {
         title,
         description,
         tags,
@@ -97,7 +100,7 @@ export function New() {
       <main>
         <Form>
           <header>
-            <ButtonText onClick={handleGoBack}>
+            <ButtonText type="button" onClick={handleGoBack}>
               <FiArrowLeft />
               Voltar
             </ButtonText>
@@ -106,6 +109,7 @@ export function New() {
 
           <div className="header-input">
             <input
+              value={title}
               placeholder="Título"
               onChange={(e) => setTitle(e.target.value)}
             />

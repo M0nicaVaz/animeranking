@@ -22,7 +22,7 @@ export const Form = styled.form`
   text-align: center;
 
   > h1 {
-    font-size: clamp(3rem, 3rem + 4vw, 4.8rem);
+    font-size: clamp(3rem, 3rem + 3vw, 4.8rem);
     color: ${({ theme }) => theme.colors.accent};
   }
 

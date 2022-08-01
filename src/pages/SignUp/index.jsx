@@ -64,11 +64,12 @@ export function SignUp() {
     <Container>
       <Form>
         <NarutoIcon />
-        <h1>Anime Rank</h1>
+        <h1>Anime Ranking</h1>
         <p>Aplicação para rankear os seus animes!</p>
 
         <h2>Crie sua conta</h2>
         <Input
+          required
           placeholder="Nome"
           type="text"
           icon={FiUser}
@@ -77,6 +78,7 @@ export function SignUp() {
           }}
         />
         <Input
+          required
           placeholder="E-mail"
           type="email"
           icon={FiMail}
@@ -85,6 +87,7 @@ export function SignUp() {
           }}
         />
         <Input
+          required
           placeholder="Senha"
           type="password"
           icon={FiLock}

@@ -2,10 +2,10 @@ import { Stars } from '../Stars';
 import { Tag } from '../Tag';
 import { Container } from './styled';
 
-export function MovieCard({ data, ...rest }) {
+export function RankingCard({ data, ...rest }) {
   return (
     <Container data={data} to={`/details/${data.id}`} {...rest}>
-      <div>
+      <div className="header">
         <h3>{data.title}</h3>
         <Stars ratings={data.rating} />
       </div>

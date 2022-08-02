@@ -15,7 +15,7 @@ export const Container = styled(Link)`
   flex: 1;
 
   height: 24rem;
-  min-width: 38rem;
+  width: 38rem;
 
   margin: 2rem auto 0;
 
@@ -54,12 +54,18 @@ export const Container = styled(Link)`
       color: ${({ theme }) => theme.colors.primary};
       text-overflow: ellipsis;
       word-break: break-all;
+
+      white-space: nowrap;
+      overflow: hidden;
+      min-width: 0;
     }
   }
 
   footer {
     display: flex;
+    gap: 0.5rem;
     flex-wrap: wrap;
+    overflow-y: auto;
   }
 
   @media (max-width: 480px) {

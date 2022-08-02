@@ -16,6 +16,8 @@ export const Container = styled.div`
     height: auto;
 
     overflow-y: auto;
+    overflow-x: hidden;
+
     padding: 0 1rem 5rem;
 
     margin: 1rem auto 0;
@@ -49,6 +51,14 @@ export const Container = styled.div`
 
       text-align: justify;
     }
+
+    .tags {
+      > div {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+    }
   }
 `;
 
@@ -57,9 +67,15 @@ export const MovieInfo = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 2.5rem;
+  width: 100%;
 
-  font-size: clamp(1.8rem, 1.6rem + 0.5vw, 3rem);
-  text-transform: capitalize;
+  h1 {
+    word-break: break-all;
+
+    font-size: clamp(1.8rem, 1.6rem + 1vw, 3rem);
+    text-transform: capitalize;
+  }
+
   svg {
     align-self: center;
   }

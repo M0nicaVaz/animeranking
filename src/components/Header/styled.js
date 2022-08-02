@@ -70,5 +70,7 @@ export const Profile = styled.div`
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
   }
 `;

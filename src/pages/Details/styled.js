@@ -68,7 +68,6 @@ export const MovieInfo = styled.div`
 export const AuthorInfo = styled.div`
   color: ${({ theme }) => theme.colors.text_ultralight};
   display: flex;
-
   flex-wrap: wrap;
   gap: 1.5rem;
 
@@ -85,7 +84,10 @@ export const AuthorInfo = styled.div`
 
   img {
     width: 30px;
+    height: 30px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 

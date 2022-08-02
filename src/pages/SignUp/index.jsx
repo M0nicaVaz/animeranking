@@ -9,16 +9,18 @@ import { Button } from '../../components/Button';
 import { Snackbar } from '../../components/Snackbar';
 import { NarutoIcon } from '../../components/NarutoIcon';
 import { Container, Form, Background, ButtonText } from './styled';
+import { useAuth } from '../../hooks/useAuth';
 
 export function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
+  const { signUp, isOpen, setIsOpen, alertMessage, setAlertMessage } =
+    useAuth();
 
   const navigate = useNavigate();
+
   function handleSignUp() {
     if (!name || !email || !password) {
       setIsOpen(true);
@@ -26,25 +28,20 @@ export function SignUp() {
       return null;
     }
 
-    api
-      .post('/users', { name, email, password })
-      .then(() => {
-        setIsOpen(true);
-        setAlertMessage('Usuário cadastrado!');
+    if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+      setIsOpen(true);
+      setAlertMessage('Digite um email válido!');
+      return null;
+    }
 
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
-      })
-      .catch((error) => {
-        if (error.response) {
-          setIsOpen(true);
-          setAlertMessage(error.response.data.message);
-        } else {
-          setIsOpen(true);
-          setAlertMessage('Não foi possível cadastrar');
-        }
-      });
+    signUp({ name, email, password }).then(() => {
+      setIsOpen(true);
+      setAlertMessage('Usuário cadastrado!');
+
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    });
   }
 
   function handleClose(event) {

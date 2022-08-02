@@ -30,6 +30,42 @@ function AuthProvider({ children }) {
     }
   }
 
+  async function signUp(name, email, password) {
+    try {
+      await api.post('/users', { name, email, password });
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        setIsOpen(true);
+        setAlertMessage(error.response.data.message);
+      }
+    }
+  }
+
+  async function signUp({ name, email, password }) {
+    if (!name || !email || !password) {
+      setIsOpen(true);
+      setAlertMessage('Preencha todos os campos!');
+      return null;
+    }
+
+    api
+      .post('/users', { name, email, password })
+      .then(() => {
+        setIsOpen(true);
+        setAlertMessage('Usuário cadastrado!');
+      })
+      .catch((error) => {
+        if (error.response) {
+          setIsOpen(true);
+          setAlertMessage(error.response.data.message);
+        } else {
+          setIsOpen(true);
+          setAlertMessage('Não foi possível cadastrar');
+        }
+      });
+  }
+
   function signOut() {
     localStorage.removeItem('@animeranking:token');
     localStorage.removeItem('@animeranking:user');
@@ -83,9 +119,11 @@ function AuthProvider({ children }) {
       value={{
         isOpen,
         alertMessage,
+        setAlertMessage,
         setIsOpen,
         signIn,
         signOut,
+        signUp,
         updateProfile,
         user: data.user,
       }}

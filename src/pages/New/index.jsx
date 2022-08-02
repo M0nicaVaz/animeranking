@@ -35,6 +35,10 @@ export function New() {
   }
 
   function handleAddTag() {
+    if (newTag.trim().length === 0) {
+      return;
+    }
+
     setTags((prevState) => [...prevState, newTag]);
     setNewTag('');
   }
@@ -83,8 +87,15 @@ export function New() {
       alert(e.message);
     }
 
-    navigate(-1);
+    navigate('/');
     return null;
+  }
+
+  function validateRating(e) {
+    if (e.target.value.length >= 1 || !/[0-5]/.test(e.key)) {
+      e.returnValue = false;
+      e.preventDefault();
+    }
   }
 
   useEffect(() => {
@@ -116,6 +127,7 @@ export function New() {
             <input
               placeholder="Sua nota (de 0 a 5)"
               type="number"
+              onKeyPress={validateRating}
               onChange={(e) => setRating(e.target.value)}
             />
           </div>

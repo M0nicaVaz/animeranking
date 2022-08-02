@@ -17,6 +17,7 @@ export default createGlobalStyle`
     
 
         -webkit-font-smoothing: antialiased;
+        font-size: 1.6rem;
     }
 
     ::selection {

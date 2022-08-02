@@ -39,6 +39,11 @@ export const Container = styled.div`
       -webkit-appearance: none;
       margin: 0;
     }
+
+    @media (max-width: 480px) {
+      width: 90vw;
+      margin: 0 auto 2.4rem;
+    }
   }
 
   main {
@@ -46,6 +51,7 @@ export const Container = styled.div`
     height: 60vh;
     margin: 2rem auto 0;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0 1.5rem 12rem;
 
     display: flex;
@@ -99,5 +105,9 @@ export const Button = styled(Link)`
   svg {
     color: ${({ theme }) => theme.colors.accent};
     align-self: center;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 80vw;
   }
 `;

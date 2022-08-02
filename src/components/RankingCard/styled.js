@@ -17,7 +17,7 @@ export const Container = styled(Link)`
   height: 24rem;
   min-width: 38rem;
 
-  margin: 2rem 0 0;
+  margin: 2rem auto 0;
 
   padding: 2rem 3rem;
   border-radius: 16px;
@@ -59,5 +59,6 @@ export const Container = styled(Link)`
 
   @media (max-width: 480px) {
     min-height: 10rem;
+    min-width: 85vw;
   }
 `;

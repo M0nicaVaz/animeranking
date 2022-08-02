@@ -44,11 +44,11 @@ export const Form = styled.form`
 
   .header-input {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
 
     > input {
-      flex: 1;
+      width: 100%;
+
       padding: 1.9rem 2.4rem;
       border-radius: 10px;
       background-color: ${({ theme }) => theme.colors.bg_light};
@@ -69,6 +69,10 @@ export const Form = styled.form`
 
     input[type='number'] {
       -moz-appearance: textfield;
+    }
+
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
     }
   }
 

@@ -57,6 +57,11 @@ export const Container = styled(Link)`
     }
   }
 
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   @media (max-width: 480px) {
     min-height: 10rem;
     min-width: 85vw;

@@ -54,7 +54,7 @@ export function New() {
     return null;
   }
 
-  async function handleNewMovie() {
+  async function handleNewAnime() {
     if (!title) {
       setIsOpen(true);
       setAlertMessage('Digite o título!');
@@ -152,6 +152,7 @@ export function New() {
 
               <NewTag
                 isNew
+                maxLength={30}
                 placeholder="Nova Tag"
                 onChange={(e) => setNewTag(e.target.value)}
                 value={newTag}
@@ -160,7 +161,7 @@ export function New() {
             </div>
           </section>
 
-          <Button title="Salvar Alterações" onClick={handleNewMovie} />
+          <Button title="Salvar Alterações" onClick={handleNewAnime} />
         </Form>
       </main>
       <Snackbar isOpen={isOpen} onClose={handleClose}>

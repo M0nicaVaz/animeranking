@@ -7,6 +7,7 @@ import { Header } from '../../components/Header';
 import { Modal } from '../../components/Modal';
 import { Container, AuthorInfo, MovieInfo } from './styled';
 import { ButtonText } from '../../components/ButtonText';
+import { Error404 } from '../../components/Error404';
 
 import { FiClock } from 'react-icons/fi';
 
@@ -54,43 +55,53 @@ export function Details() {
 
       {data && (
         <main>
-          <header>
-            <div className="action-btn">
-              <ButtonText title="Voltar" onClick={handleGoBack} />
+          {data.title ? (
+            <div>
+              <header>
+                <div className="action-btn">
+                  <ButtonText title="Voltar" onClick={handleGoBack} />
 
-              <ButtonText title="Excluir Anime" onClick={handleModal} noIcon />
-            </div>
-
-            <MovieInfo>
-              <h1>{data.title} </h1>
-              <Stars ratings={data.rating} />
-            </MovieInfo>
-
-            <AuthorInfo>
-              <div>
-                <img src={avatarUrl} />
-
-                <span>Por {user.name}</span>
-              </div>
-
-              <div>
-                <FiClock />
-                <span>{data.updated_at}</span>
-              </div>
-            </AuthorInfo>
-
-            <section className="tags">
-              {data.tags && (
-                <div>
-                  {data.tags.map((tag) => (
-                    <Tag title={tag.name} key={tag.id} />
-                  ))}
+                  <ButtonText
+                    title="Excluir Anime"
+                    onClick={handleModal}
+                    noIcon
+                  />
                 </div>
-              )}
-            </section>
-          </header>
 
-          <p>{data.description}</p>
+                <MovieInfo>
+                  <h1>{data.title || 'Nada aqui :('} </h1>
+                  <Stars ratings={data.rating} />
+                </MovieInfo>
+
+                <AuthorInfo>
+                  <div>
+                    <img src={avatarUrl} />
+
+                    <span>Por {user.name}</span>
+                  </div>
+
+                  <div>
+                    <FiClock />
+                    <span>{data.updated_at}</span>
+                  </div>
+                </AuthorInfo>
+
+                <section className="tags">
+                  {data.tags && (
+                    <div>
+                      {data.tags.map((tag) => (
+                        <Tag title={tag.name} key={tag.id} />
+                      ))}
+                    </div>
+                  )}
+                </section>
+              </header>
+
+              <p>{data.description}</p>
+            </div>
+          ) : (
+            <Error404 />
+          )}
         </main>
       )}
 

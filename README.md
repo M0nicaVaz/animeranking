@@ -3,13 +3,13 @@
 Uma aplicação para rankear os animes que você assistiu!
 <br> <br>
 
-Você tem a opção de adicionar os animes manualmente ou selecioná-los na guia explorar:
+Você tem a opção de adicionar os animes manualmente ou selecioná-los num guia!
 
 Clique <a href="https://animeranking.vercel.app/" target="_blank">aqui</a> para acessar!
 
 ### Preview
 
-<img src="./GitHub/preview.gif" width="680px" >
+<img src="./.github/preview.gif" width="680px" >
 
 ### Tech Stack
 

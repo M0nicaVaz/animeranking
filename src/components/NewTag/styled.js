@@ -16,6 +16,14 @@ export const Container = styled.div`
   border-radius: 1rem;
   padding-right: 1.6rem;
 
+  &:focus {
+    border: none;
+    border-radius: 2pt;
+
+    outline: none;
+    transition: 0.1s;
+  }
+
   button {
     margin: 0;
     width: 1rem;

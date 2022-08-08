@@ -5,6 +5,18 @@ export default createGlobalStyle`
         font-size: 62.5%;
     }
 
+    :focus {
+        outline: transparent;
+        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent};
+    }
+
+
+
+    :focus:not(:focus-visible) {
+        outline: none;
+        box-shadow: 0 0 0;
+    }
+
     * {
     margin: 0;
     padding: 0;
@@ -63,6 +75,10 @@ export default createGlobalStyle`
 
     button:hover, a:hover {
         filter: brightness(0.9);
+    }
+
+    input:focus{
+        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent_md};
     }
 
 `;

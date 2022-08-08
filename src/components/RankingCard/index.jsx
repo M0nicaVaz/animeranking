@@ -5,10 +5,10 @@ import { Container } from './styled';
 export function RankingCard({ data, ...rest }) {
   return (
     <Container data={data} to={`/details/${data.id}`} {...rest}>
-      <div className="header">
+      <header>
         <h3>{data.title}</h3>
         <Stars ratings={data.rating} />
-      </div>
+      </header>
 
       <p>{data.description}</p>
 

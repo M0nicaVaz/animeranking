@@ -12,6 +12,17 @@ export const Container = styled.div`
     'search'
     'content';
 
+  section {
+    margin: 2rem auto;
+    width: min(90%, 130rem);
+  }
+
+  .btnWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .add-anime {
     display: flex;
     gap: 2rem;
@@ -83,6 +94,11 @@ export const LinkButton = styled(Link)`
   justify-content: center;
   gap: 0.5rem;
 
+  &:focus {
+    border: 0.5px solid black;
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
+  }
+
   @media (max-width: 480px) {
     flex: 1;
     padding: 1.4rem 0.6rem;
@@ -93,10 +109,11 @@ export const Button = styled(Link)`
   background: none;
   border: none;
   margin-bottom: 2rem;
+  width: fit-content;
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+
   gap: 1rem;
   color: ${({ theme }) => theme.colors.accent};
 

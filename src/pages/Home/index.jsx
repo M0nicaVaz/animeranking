@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
+import { FiArrowRight, FiPlus } from 'react-icons/fi';
 import { Header } from '../../components/Header';
-import { Section } from '../../components/Section';
 import { RankingCard } from '../../components/RankingCard';
-import { FiPlus, FiArrowRight } from 'react-icons/fi';
 
-import { Container, LinkButton, Button } from './styled';
+import { Button, Container, LinkButton } from './styled';
 
 export function Home() {
   const [search, setSearch] = useState('');
@@ -33,8 +32,8 @@ export function Home() {
     <Container>
       <Header />
 
-      <Section>
-        <div>
+      <section>
+        <div className="btnWrapper">
           <Button to="/explore">
             Explorar Animes
             <FiArrowRight />
@@ -66,7 +65,7 @@ export function Home() {
             />
           ))}
         </main>
-      </Section>
+      </section>
     </Container>
   );
 }

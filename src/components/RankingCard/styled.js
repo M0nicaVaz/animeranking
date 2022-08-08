@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Container = styled(Link)`
   background-color: ${({ theme }) => theme.colors.accent_light};
@@ -41,7 +41,7 @@ export const Container = styled(Link)`
     -webkit-line-clamp: 4;
   }
 
-  .header {
+  > header {
     width: 100%;
     display: flex;
     flex-direction: column;

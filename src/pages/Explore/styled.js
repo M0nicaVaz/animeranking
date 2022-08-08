@@ -100,6 +100,11 @@ export const Button = styled.button`
   justify-content: center;
   gap: 0.5rem;
 
+  &:focus {
+    border: 0.5px solid black;
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
+  }
+
   @media (max-width: 520px) {
     min-width: 14rem;
     gap: 0.5rem;

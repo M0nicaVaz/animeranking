@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.article`
   background-color: ${({ theme }) => theme.colors.accent_light};
   color: ${({ theme }) => theme.colors.text_ultralight};
 

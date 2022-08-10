@@ -1,22 +1,27 @@
-import { useState, useEffect } from 'react';
+import { format } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
+
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Stars } from '../../components/Stars';
-import { Tag } from '../../components/Tag';
-import { Header } from '../../components/Header';
-import { Modal } from '../../components/Modal';
-import { Container, AuthorInfo, MovieInfo } from './styled';
 import { ButtonText } from '../../components/ButtonText';
 import { Error404 } from '../../components/Error404';
+import { Header } from '../../components/Header';
+import { Modal } from '../../components/Modal';
+import { Stars } from '../../components/Stars';
+import { Tag } from '../../components/Tag';
+import { AnimeInfo, AuthorInfo, Container } from './styled';
 
 import { FiClock } from 'react-icons/fi';
 
-import { api } from '../../services/api';
-import { useAuth } from '../../hooks/useAuth';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
+import { useAuth } from '../../hooks/useAuth';
+import { api } from '../../services/api';
 
 export function Details() {
   const [data, setData] = useState(null);
+  const [dateFormatted, setDateFormatted] = useState(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
 
@@ -41,12 +46,19 @@ export function Details() {
   }
 
   useEffect(() => {
-    async function fetchMovie() {
+    async function getRankedAnimeAndSetDate() {
       const response = await api.get(`/animes/${params.id}`);
+
       setData(response.data);
+
+      const updatedAt = new Date(response.data.updated_at);
+      const utcDate = zonedTimeToUtc(updatedAt, 'Etc/GMT');
+      const publishedDateFormatted = format(utcDate, "d'/'LL'/'yyyy  H:mm:ss");
+
+      setDateFormatted(publishedDateFormatted);
     }
 
-    fetchMovie();
+    getRankedAnimeAndSetDate();
   }, []);
 
   return (
@@ -68,10 +80,10 @@ export function Details() {
                   />
                 </div>
 
-                <MovieInfo>
+                <AnimeInfo>
                   <h1>{data.title || 'Nada aqui :('} </h1>
                   <Stars ratings={data.rating} />
-                </MovieInfo>
+                </AnimeInfo>
 
                 <AuthorInfo>
                   <div>
@@ -82,7 +94,7 @@ export function Details() {
 
                   <div>
                     <FiClock />
-                    <span>{data.updated_at}</span>
+                    <span>{dateFormatted}</span>
                   </div>
                 </AuthorInfo>
 

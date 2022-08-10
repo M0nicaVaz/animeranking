@@ -62,7 +62,7 @@ export const Container = styled.div`
   }
 `;
 
-export const MovieInfo = styled.div`
+export const AnimeInfo = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;

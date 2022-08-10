@@ -1,20 +1,27 @@
-import { FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiCamera, FiLock, FiMail, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
-import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { ButtonText } from '../../components/ButtonText';
+import { Input } from '../../components/Input';
 import { Snackbar } from '../../components/Snackbar';
 
-import { Container, Form, Avatar } from './styled';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
+import { Avatar, Container, Form } from './styled';
 
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 
 export function Profile() {
-  const { user, updateProfile, isOpen, setIsOpen, alertMessage } = useAuth();
+  const {
+    user,
+    updateProfile,
+    isOpen,
+    setIsOpen,
+    alertMessage,
+    setAlertMessage,
+  } = useAuth();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -35,6 +42,18 @@ export function Profile() {
   }
 
   async function handleUpdate() {
+    if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+      setIsOpen(true);
+      setAlertMessage('Digite um email válido!');
+      return null;
+    }
+
+    if (name.length === 0) {
+      setIsOpen(true);
+      setAlertMessage('Digite um nome');
+      return null;
+    }
+
     const updated = {
       name,
       email,
@@ -54,19 +73,6 @@ export function Profile() {
     const imagePreview = URL.createObjectURL(file);
     setAvatar(imagePreview);
   }
-
-  function handleClose(e) {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-
-    return null;
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 5000);
-  }, [isOpen]);
 
   return (
     <Container>
@@ -114,7 +120,7 @@ export function Profile() {
 
         <Button title="Salvar" onClick={handleUpdate} />
       </Form>
-      <Snackbar isOpen={isOpen} onClose={handleClose}>
+      <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>
         {alertMessage}
       </Snackbar>
     </Container>

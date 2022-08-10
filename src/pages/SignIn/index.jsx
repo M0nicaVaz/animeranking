@@ -1,12 +1,12 @@
-import { FiMail, FiLock } from 'react-icons/fi';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FiLock, FiMail } from 'react-icons/fi';
 import { useAuth } from '../../hooks/useAuth';
 
-import { Snackbar } from '../../components/Snackbar';
-import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 import { NarutoIcon } from '../../components/NarutoIcon';
-import { Container, Form, ButtonText, Background } from './styled';
+import { Snackbar } from '../../components/Snackbar';
+import { Background, ButtonText, Container, Form } from './styled';
 
 export function SignIn() {
   const [email, setEmail] = useState('');
@@ -17,19 +17,6 @@ export function SignIn() {
   function handleSignIn() {
     signIn({ email, password });
   }
-
-  function handleClose(event) {
-    event.preventDefault();
-    setIsOpen(!isOpen);
-
-    return null;
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 5000);
-  }, [isOpen]);
 
   return (
     <Container>
@@ -56,7 +43,7 @@ export function SignIn() {
         <ButtonText to="/register">Criar conta</ButtonText>
       </Form>
 
-      <Snackbar isOpen={isOpen} onClose={handleClose}>
+      <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>
         {alertMessage}
       </Snackbar>
       <Background />

@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
-import { FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
+import { FiArrowLeft, FiLock, FiMail, FiUser } from 'react-icons/fi';
 
-import { api } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 
-import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-import { Snackbar } from '../../components/Snackbar';
+import { Input } from '../../components/Input';
 import { NarutoIcon } from '../../components/NarutoIcon';
-import { Container, Form, Background, ButtonText } from './styled';
+import { Snackbar } from '../../components/Snackbar';
 import { useAuth } from '../../hooks/useAuth';
+import { Background, ButtonText, Container, Form } from './styled';
 
 export function SignUp() {
   const [name, setName] = useState('');
@@ -43,19 +42,6 @@ export function SignUp() {
       }, 1000);
     });
   }
-
-  function handleClose(event) {
-    event.preventDefault();
-    setIsOpen(!isOpen);
-
-    return null;
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 5000);
-  }, [isOpen]);
 
   return (
     <Container>
@@ -100,7 +86,7 @@ export function SignUp() {
         </ButtonText>
       </Form>
 
-      <Snackbar isOpen={isOpen} onClose={handleClose}>
+      <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>
         {alertMessage}
       </Snackbar>
 

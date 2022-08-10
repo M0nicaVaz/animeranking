@@ -1,46 +1,64 @@
-import { Header } from '../../components/Header';
-import { Section } from '../../components/Section';
+import { FiSearch } from 'react-icons/fi';
 import { AnimeCard } from '../../components/AnimeCard';
 import { ButtonText } from '../../components/ButtonText';
+import { Header } from '../../components/Header';
+import { Section } from '../../components/Section';
+import { Snackbar } from '../../components/Snackbar';
 
-import { FiSearch } from 'react-icons/fi';
-
-import { Container, Button } from './styled';
 import { anime } from '../../services/jinkan';
+import { Button, Container } from './styled';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function Explore() {
   const [search, setSearch] = useState('');
   const [animes, setAnimes] = useState([]);
   const [topAnimes, setTopAnimes] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
-  async function fetchAnimesFromMAL() {
-    if (search.length > 0) {
+  const isThereAnimeSearched = animes.length > 0;
+  const isTopAnimesLoaded = topAnimes.length > 0;
+
+  async function getSearchedAnime() {
+    const searchInputIsNotEmpty = search.trim().length > 0;
+
+    if (searchInputIsNotEmpty) {
       const response = await anime.get(
         `/anime?q=${search}&order_by=popularity&sort=asc&limit=8&sfw`
       );
 
+      const animeNotFound = response.data.data.length === 0;
+
+      if (animeNotFound) {
+        setIsOpen(true);
+        setAlertMessage('Desculpe, não encontramos esse anime :(');
+        return null;
+      }
+
       setAnimes(response.data.data);
-    } else {
-      setAnimes([]);
     }
   }
 
-  function HandleSearch(e) {
+  function handleSearch(e) {
     e.preventDefault();
 
-    fetchAnimesFromMAL(search);
+    getSearchedAnime(search);
+    setSearch('');
   }
 
-  async function fetchTopAnimes() {
+  function handleSearchInputChange(e) {
+    setSearch(e.target.value);
+  }
+
+  async function getTopAnimes() {
     const response = await anime.get(`/top/anime`);
 
     setTopAnimes(response.data.data);
   }
 
   useEffect(() => {
-    fetchTopAnimes();
+    getTopAnimes();
   }, []);
 
   return (
@@ -50,34 +68,36 @@ export function Explore() {
       <Section>
         <ButtonText title="Voltar" />
         <h2>Explorar Animes</h2>
-        <div className="search">
+        <form className="search" onSubmit={handleSearch}>
           <input
+            required
             type="text"
             placeholder="Digite o anime para pesquisar"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchInputChange}
+            value={search}
           />
-          <Button onClick={HandleSearch}>
+          <Button>
             <FiSearch />
             Buscar Anime
           </Button>
-        </div>
+        </form>
 
         <main>
-          {topAnimes.length > 0 ? (
-            animes.length > 0 ? (
-              animes.map((anime) => (
-                <AnimeCard data={anime} key={anime.mal_id} />
-              ))
-            ) : (
-              topAnimes.map((anime) => (
-                <AnimeCard data={anime} key={anime.mal_id} />
-              ))
-            )
+          {isThereAnimeSearched ? (
+            animes.map((anime) => <AnimeCard data={anime} key={anime.mal_id} />)
+          ) : isTopAnimesLoaded ? (
+            topAnimes.map((anime) => (
+              <AnimeCard data={anime} key={anime.mal_id} />
+            ))
           ) : (
             <span className="loading">Carregando... </span>
           )}
         </main>
       </Section>
+
+      <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>
+        {alertMessage}
+      </Snackbar>
     </Container>
   );
 }

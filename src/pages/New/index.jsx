@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Header } from '../../components/Header';
-import { Textarea } from '../../components/Textarea';
-import { NewTag } from '../../components/NewTag';
 import { FiArrowLeft } from 'react-icons/fi';
+import { Header } from '../../components/Header';
+import { NewTag } from '../../components/NewTag';
 import { Snackbar } from '../../components/Snackbar';
+import { Textarea } from '../../components/Textarea';
 
 import { Button } from '../../components/Button';
 
 import { api } from '../../services/api';
 
-import { Container, Form, ButtonText } from './styled';
+import { ButtonText, Container, Form } from './styled';
 
 export function New() {
   const { slug } = useParams();
@@ -45,13 +45,6 @@ export function New() {
 
   function handleRemoveTag(deleted) {
     setTags((prevState) => prevState.filter((tag) => tag !== deleted));
-  }
-
-  function handleClose(event) {
-    event.preventDefault();
-    setIsOpen(!isOpen);
-
-    return null;
   }
 
   async function handleNewAnime() {
@@ -97,12 +90,6 @@ export function New() {
       e.preventDefault();
     }
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 5000);
-  }, [isOpen]);
 
   return (
     <Container>
@@ -164,7 +151,7 @@ export function New() {
           <Button title="Salvar Alterações" onClick={handleNewAnime} />
         </Form>
       </main>
-      <Snackbar isOpen={isOpen} onClose={handleClose}>
+      <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>
         {alertMessage}
       </Snackbar>
     </Container>

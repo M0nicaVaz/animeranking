@@ -22,4 +22,9 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `;

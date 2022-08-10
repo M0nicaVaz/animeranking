@@ -11,7 +11,7 @@ import { Button, Container, LinkButton } from './styled';
 
 export function Home() {
   const [search, setSearch] = useState('');
-  const [anime, setAnime] = useState([]);
+  const [rankingList, setRankingList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -20,12 +20,13 @@ export function Home() {
   }
 
   useEffect(() => {
-    async function fetchAnime() {
+    async function getRankingList() {
       const response = await api.get(`/animes/?title=${search}`);
-      setAnime(response.data);
+
+      setRankingList(response.data);
     }
 
-    fetchAnime();
+    getRankingList();
   }, [search]);
 
   return (
@@ -55,12 +56,12 @@ export function Home() {
         </div>
 
         <main>
-          {anime.map((movie) => (
+          {rankingList.map((anime) => (
             <RankingCard
-              key={String(movie.id)}
-              data={movie}
+              key={String(anime.id)}
+              data={anime}
               onClick={() => {
-                handleDetails(movie.id);
+                handleDetails(anime.id);
               }}
             />
           ))}

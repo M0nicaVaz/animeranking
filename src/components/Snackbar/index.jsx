@@ -1,14 +1,16 @@
+import { useEffect } from 'react';
 import { Container } from './styles.js';
-import { FiX } from 'react-icons/fi';
 
-export function Snackbar({ isOpen, onClose, children }) {
+export function Snackbar({ isOpen, setIsOpen, children }) {
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 3000);
+  }, [isOpen]);
+
   return (
-    <Container isOpen={isOpen}>
+    <Container isOpen={isOpen} setIsOpen={setIsOpen}>
       <span>{children}</span>
-
-      <button onClick={onClose}>
-        <FiX />
-      </button>
     </Container>
   );
 }

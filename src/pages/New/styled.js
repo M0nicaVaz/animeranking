@@ -98,12 +98,6 @@ export const Form = styled.form`
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-
-    div {
-      flex: 1;
-      min-width: 15rem;
-      max-width: 100%;
-    }
   }
 
   > button {

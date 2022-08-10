@@ -36,7 +36,7 @@ export function New() {
 
   function handleAddTag() {
     if (newTag.trim().length === 0) {
-      return;
+      return null;
     }
 
     setTags((prevState) => [...prevState, newTag]);

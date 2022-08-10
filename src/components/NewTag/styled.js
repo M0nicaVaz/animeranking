@@ -4,6 +4,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+
+  flex: 1;
+  max-width: 50rem;
 
   background-color: ${({ theme, isNew }) =>
     isNew ? 'transparent' : theme.colors.bg_light};
@@ -26,7 +30,9 @@ export const Container = styled.div`
 
   button {
     margin: 0;
+
     width: 1rem;
+    padding: 1.6rem;
     border: none;
     background: none;
   }
@@ -41,7 +47,6 @@ export const Container = styled.div`
 
   > input {
     flex: 1;
-    width: 100%;
     height: 5.6rem;
 
     white-space: nowrap;

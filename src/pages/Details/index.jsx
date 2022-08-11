@@ -58,7 +58,7 @@ export function Details() {
 
       const updatedAt = new Date(response.data.updated_at);
       const utcDate = zonedTimeToUtc(updatedAt, 'Etc/GMT');
-      const publishedDateFormatted = format(utcDate, "d'/'LL'/'yyyy  hh:mm:ss");
+      const publishedDateFormatted = format(utcDate, "d'/'LL'/'yyyy  HH:mm:ss");
 
       setDateFormatted(publishedDateFormatted);
     }

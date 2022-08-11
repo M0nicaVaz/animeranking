@@ -64,7 +64,7 @@ export function New() {
       return null;
     }
 
-    if (rating < 0 || rating > 5 || rating.length === 0) {
+    if (rating < 0 || rating > 5) {
       setIsOpen(true);
       setAlertMessage('Digite uma nota de 0 a 5!');
 

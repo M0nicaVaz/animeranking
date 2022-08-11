@@ -60,6 +60,23 @@ export const Container = styled.div`
       }
     }
   }
+
+  .edit {
+    border: none;
+    background: none;
+    color: ${({ theme }) => theme.colors.accent};
+    margin: 0;
+
+    font-size: clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    > svg {
+      color: ${({ theme }) => theme.colors.accent};
+    }
+  }
 `;
 
 export const AnimeInfo = styled.div`

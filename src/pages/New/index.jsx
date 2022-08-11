@@ -14,8 +14,10 @@ import { api } from '../../services/api';
 import { ButtonText, Container, Form } from './styled';
 
 export function New() {
-  const { slug } = useParams();
+  const { slug, id } = useParams();
   const titleFromParam = slug ? slug.split('_').join(' ') : '';
+
+  const [data, setData] = useState([]);
 
   const [title, setTitle] = useState(titleFromParam);
   const [description, setDescription] = useState('');
@@ -45,6 +47,13 @@ export function New() {
 
   function handleRemoveTag(deleted) {
     setTags((prevState) => prevState.filter((tag) => tag !== deleted));
+  }
+
+  function validateRating(e) {
+    if (e.target.value.length >= 1 || !/[0-5]/.test(e.key)) {
+      e.returnValue = false;
+      e.preventDefault();
+    }
   }
 
   async function handleNewAnime() {
@@ -84,12 +93,41 @@ export function New() {
     return null;
   }
 
-  function validateRating(e) {
-    if (e.target.value.length >= 1 || !/[0-5]/.test(e.key)) {
-      e.returnValue = false;
-      e.preventDefault();
+  async function handleUpdateAnime() {
+    const updated = {
+      title,
+      description,
+      rating,
+      tags,
+      id,
+    };
+
+    const animeUpdated = Object.assign(data, updated);
+
+    try {
+      await api.put(`/animes/${id}`, animeUpdated);
+    } catch (e) {
+      alert(e.message);
     }
+
+    navigate('/');
+    return null;
   }
+
+  useEffect(() => {
+    if (id) {
+      async function getAnimeFromDB() {
+        const response = await api.get(`/animes/${id}`);
+        const { tags } = response.data;
+
+        const newTags = tags.map((tag) => tag.name);
+
+        setData(response.data);
+        setTags(newTags);
+      }
+      getAnimeFromDB();
+    }
+  }, []);
 
   return (
     <Container>
@@ -102,26 +140,28 @@ export function New() {
               <FiArrowLeft />
               Voltar
             </ButtonText>
-            <h1>Novo Anime</h1>
+            <h1>{id ? 'Editar Anime' : 'Novo Anime'}</h1>
           </header>
 
           <div className="header-input">
             <input
-              value={title}
               placeholder="Título"
               onChange={(e) => setTitle(e.target.value)}
+              defaultValue={data.title || title}
             />
             <input
               placeholder="Sua nota (de 0 a 5)"
               type="number"
               onKeyPress={validateRating}
               onChange={(e) => setRating(e.target.value)}
+              defaultValue={data.rating || rating}
             />
           </div>
 
           <Textarea
             placeholder="Observações"
             onChange={(e) => setDescription(e.target.value)}
+            defaultValue={data.description || description}
           />
 
           <section>
@@ -148,7 +188,10 @@ export function New() {
             </div>
           </section>
 
-          <Button title="Salvar Alterações" onClick={handleNewAnime} />
+          <Button
+            title="Salvar Alterações"
+            onClick={!id ? handleNewAnime : handleUpdateAnime}
+          />
         </Form>
       </main>
       <Snackbar isOpen={isOpen} setIsOpen={setIsOpen}>

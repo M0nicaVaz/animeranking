@@ -94,6 +94,20 @@ export function New() {
   }
 
   async function handleUpdateAnime() {
+    if (rating < 0 || rating > 5 || rating.length === 0) {
+      setIsOpen(true);
+      setAlertMessage('Digite uma nota de 0 a 5!');
+
+      return null;
+    }
+
+    if (newTag) {
+      setIsOpen(true);
+      setAlertMessage('Ops! Você esqueceu de adicionar a tag!');
+
+      return null;
+    }
+
     const updated = {
       title,
       description,

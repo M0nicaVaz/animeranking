@@ -48,6 +48,13 @@ export default createGlobalStyle`
     border-radius: 10px;
     }
 
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+    transition: all 0s 50000s;
+    }
+
     img, svg {
         pointer-events: none;
 

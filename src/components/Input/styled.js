@@ -10,6 +10,11 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
+  border: 1px solid transparent;
+
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.accent};
+  }
 
   > input {
     width: 100%;
@@ -19,6 +24,10 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     font-size: 1.6rem;
     border: none;
+
+    &:focus {
+      box-shadow: none;
+    }
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.text_ultralight};

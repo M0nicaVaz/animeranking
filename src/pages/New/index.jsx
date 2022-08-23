@@ -162,6 +162,7 @@ export function New() {
               placeholder="Título"
               onChange={(e) => setTitle(e.target.value)}
               defaultValue={data.title || title}
+              minLength="1"
             />
             <input
               placeholder="Sua nota (de 0 a 5)"
@@ -169,6 +170,8 @@ export function New() {
               onKeyPress={validateRating}
               onChange={(e) => setRating(e.target.value)}
               defaultValue={data.rating || rating}
+              min={0}
+              max={5}
             />
           </div>
 

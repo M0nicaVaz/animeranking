@@ -52,10 +52,13 @@ export const Container = styled.div`
     border-radius: 10px;
 
     &:nth-child(2) {
-      border: 1px solid ${({ theme }) => theme.colors.red};
       color: ${({ theme }) => theme.colors.bg_light};
       background-color: ${({ theme }) => theme.colors.accent};
       margin-left: 1.6rem;
+
+      &:focus {
+        border-color: ${({ theme }) => theme.colors.red};
+      }
     }
   }
 `;

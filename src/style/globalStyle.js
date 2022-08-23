@@ -7,9 +7,9 @@ export default createGlobalStyle`
 
     :focus {
         outline: transparent;
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent};
+        box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
+        border-radius: 5px;
     }
-
 
 
     :focus:not(:focus-visible) {
@@ -50,6 +50,10 @@ export default createGlobalStyle`
 
     img, svg {
         pointer-events: none;
+
+        &::selection{
+            background: none;
+        }
     }
 
 
@@ -77,8 +81,5 @@ export default createGlobalStyle`
         filter: brightness(0.9);
     }
 
-    input:focus{
-        box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent_md};
-    }
 
 `;

@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://anime-ranking-1.herokuapp.com',
+  baseURL: import.meta.env.VITE_APP_API,
 });
